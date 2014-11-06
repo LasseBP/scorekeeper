@@ -52,3 +52,11 @@ coverage.xml
 # Sphinx documentation
 docs/_build/
 
+#virtual env
+venv/
+
+#mac stuff
+.DS_Store
+
+#pycharm / idea
+.idea/*

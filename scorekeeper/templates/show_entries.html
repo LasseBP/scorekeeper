@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+{% block body %}
+    Nuværende samlet score: <b>Ivan {{p1Score}} - {{p2Score}} Lasse </b>
+    <br><br>
+    Post scoreændring:
+	<form action="{{ url_for('add_entry') }}" method="post" class="add-entry">
+      <label for="Note">Kommentar</label>
+	  <input type="text" id="Note" size="50" name="Note"><br>
+      <label for="Pl1ScoreChng">Ivan</label>
+	  <input type="number" id="Pl1ScoreChng" size="3" value="0" name="Pl1ScoreChng">
+      <label for="Pl1ScoreChng">Lasse</label>
+      <input type="number" id="Pl2ScoreChng" size=3 value="0" name=Pl2ScoreChng>
+      <input type="submit" value="Post">
+	</form>
+	<ul class=entries>
+	{% for entry in entries %}
+	<li><h2>{{ entry.Note|safe }}</h2> Ændring: <b>{{format_score(entry.Pl1ScoreChng)}}</b> - <b>{{format_score(entry.Pl2ScoreChng)}}</b>
+             <br>Tidspunkt: {{ get_day_name(entry.DayOfWeek) }} {{ entry.Timestamp }}
+	{% else %}
+	<li><em>Vildt. Her er tomt.</em>
+	{% endfor %}
+	</ul>
+{% endblock %}
